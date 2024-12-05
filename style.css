@@ -1,0 +1,222 @@
+@import 'https://fonts.googleapis.com/css?family=Space+Mono:400';
+:root {
+  --color-bg: #fff;
+  --color-contrast: #000;
+  --bezel: 4vmin;
+}
+
+body {
+  background: var(--color-contrast);
+}
+body::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(255, 255, 255, 0.15);
+}
+
+.loading {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: #fff;
+}
+
+html, body {
+  min-height: 100%;
+}
+
+html, body, input {
+  font-family: "Space Mono", ipm, Menlo, "Courier New", monospace;
+  font-size: calc(1vmin + .75rem);
+}
+html, html h1, html h2, body, body h1, body h2, input, input h1, input h2 {
+  font-weight: 400;
+}
+
+input {
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+  border: none;
+  padding: 0;
+  margin: 0;
+  background: none;
+  color: currentColor;
+}
+input[type=text]:focus {
+  outline: none;
+}
+
+.js-app {
+  transition: opacity 400ms, visibility 400ms;
+  background-color: var(--color-bg);
+}
+
+h2 {
+  -webkit-clip-path: inset(0 0 0 0);
+          clip-path: inset(0 0 0 0);
+  transition: 400ms -webkit-clip-path cubic-bezier(0.7, 0.25, 0, 1) 1000ms;
+  transition: 400ms clip-path cubic-bezier(0.7, 0.25, 0, 1) 1000ms;
+  transition: 400ms clip-path cubic-bezier(0.7, 0.25, 0, 1) 1000ms, 400ms -webkit-clip-path cubic-bezier(0.7, 0.25, 0, 1) 1000ms;
+}
+
+.logo {
+  transition: 333ms transform cubic-bezier(0.7, 0.3, 0.25, 1.15);
+  transform-origin: 50% 50%;
+  pointer-events: none;
+}
+
+.background {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  width: 70vh;
+  max-width: 90%;
+  height: 90vh;
+  transform: translate(-50%, -50%);
+  background-color: var(--color-bg);
+}
+.background::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  box-shadow: 0 0 4rem var(--color-bg);
+  pointer-events: none;
+  transform: scale(0.9) translateY(2vmin);
+}
+
+.logo svg {
+  width: 6rem;
+  height: auto;
+  transition: 640ms transform cubic-bezier(0.7, 0.3, 0.25, 1.15) 200ms, 500ms opacity linear 240ms;
+  transform: scale(1) rotate(0deg);
+}
+.logo svg path {
+  fill: currentColor;
+}
+
+.header {
+  position: absolute;
+  bottom: -1px;
+  left: -1px;
+  right: -1px;
+  padding: calc(var(--bezel) * .75) var(--bezel) var(--bezel);
+  background-color: var(--color-contrast);
+  color: var(--color-bg);
+}
+
+.inner h1 {
+  position: relative;
+  margin: 0 0 0.6rem 0;
+}
+.inner h2 {
+  margin: 0;
+  font-size: 1rem;
+}
+.inner h2 span {
+  display: none;
+}
+.inner input[type=color],
+.inner input[type=button] {
+  cursor: pointer;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: auto;
+  opacity: 0;
+}
+
+.is-hidden {
+  visibility: hidden;
+  opacity: 0;
+}
+.is-hidden .background {
+  box-shadow: inset 0 0 0 0 currentColor;
+}
+.is-hidden .logo svg {
+  opacity: 0;
+  transform: scale(0.15) rotate(-280deg);
+}
+.is-hidden h2 {
+  -webkit-clip-path: inset(0 0 100% 0);
+          clip-path: inset(0 0 100% 0);
+}
+.is-hidden .github-corner {
+  transform: translate3d(150%, -150%, 0);
+}
+
+.github-corner {
+  z-index: 1;
+  color: currentColor;
+  position: absolute;
+  top: 0;
+  right: 0;
+  transform: translate3d(0, 0, 0);
+  transition: 333ms transform cubic-bezier(0.7, 0.3, 0.25, 1.15) 1200ms;
+  will-change: transform;
+}
+.github-corner svg {
+  width: 4rem;
+  height: 4rem;
+}
+.github-corner path {
+  transition: 200ms fill linear;
+  will-chrange: fill;
+}
+.github-corner .octo-arm,
+.github-corner .octo-body {
+  fill: var(--color-contrast);
+}
+.github-corner .triange {
+  fill: var(--color-bg);
+}
+
+.github-corner:hover .octo-arm {
+  -webkit-animation: octocat-wave 560ms ease-in-out;
+          animation: octocat-wave 560ms ease-in-out;
+}
+
+@-webkit-keyframes octocat-wave {
+  0%, 100% {
+    transform: rotate(0);
+  }
+  20%, 60% {
+    transform: rotate(-25deg);
+  }
+  40%, 80% {
+    transform: rotate(10deg);
+  }
+}
+
+@keyframes octocat-wave {
+  0%, 100% {
+    transform: rotate(0);
+  }
+  20%, 60% {
+    transform: rotate(-25deg);
+  }
+  40%, 80% {
+    transform: rotate(10deg);
+  }
+}
+@media (max-width: 500px) {
+  .github-corner:hover .octo-arm {
+    -webkit-animation: none;
+            animation: none;
+  }
+
+  .github-corner .octo-arm {
+    -webkit-animation: octocat-wave 560ms ease-in-out;
+            animation: octocat-wave 560ms ease-in-out;
+  }
+}
